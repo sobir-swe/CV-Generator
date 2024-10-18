@@ -20,7 +20,7 @@ class StudentFactory extends Factory
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'nt_id' => $this->faker->numberBetween(10000,100000),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->regexify('\+9989[0-9]{7}'),
             'photo' => null,
             'profession' => $this->faker->jobTitle(),
             'biography' => null,
