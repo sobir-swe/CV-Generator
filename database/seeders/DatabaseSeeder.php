@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ExperienceSeeder::class,
             HardSkillSeeder::class,
+            SoftSkillSeeder::class,
         ]);
     }
 }
