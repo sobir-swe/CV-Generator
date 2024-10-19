@@ -18,4 +18,9 @@ class Experience extends Model
         'start_date',
         'end_date',
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -10,6 +10,7 @@ class Project extends Model
     /** @use HasFactory<\Database\Factories\ProjectFactory> */
     use HasFactory;
 
+    protected $table = 'project_user';
     protected $fillable = [
         'user_id',
         'name',
@@ -17,4 +18,9 @@ class Project extends Model
         'source_link',
         'demo_link',
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
