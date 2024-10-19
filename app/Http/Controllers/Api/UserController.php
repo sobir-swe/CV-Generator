@@ -43,7 +43,7 @@ class UserController extends Controller
             'message' => 'User created successfully',
             'status' => 'success',
             'token' => $user->createToken($user->first_name)->plainTextToken
-        ]);
+        ], 201);
     }
 
     /**
@@ -88,7 +88,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
         $user = User::query()->findOrFail($id);
         $user->delete();

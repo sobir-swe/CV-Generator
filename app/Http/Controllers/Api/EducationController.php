@@ -11,9 +11,9 @@ class EducationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Database\Eloquent\Collection
     {
-        //
+        return Education::all();
     }
 
     /**
@@ -27,23 +27,34 @@ class EducationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        //
+        $experience = Education::query()->create([
+            'user_id' => auth()->id(),
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+        ]);
+
+        return response()->json([
+            'message' => 'Education created successfully',
+            'experience' => $experience
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Education $education)
+    public function show(string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        return response()->json(Education::query()->findOrFail($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Education $education)
+    public function edit(string $id)
     {
         //
     }
@@ -51,16 +62,34 @@ class EducationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Education $education)
+    public function update(Request $request, string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        $experience = Education::query()->findOrFail($id);
+        $experience->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+        ]);
+
+        return response()->json([
+            'message' => 'Education updated successfully',
+            'status' => 'success',
+            'experience' => $experience
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Education $education)
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        $experience = Education::query()->findOrFail($id);
+        $experience->delete();
+        return response()->json([
+            'message' => 'Education deleted successfully',
+            'status' => 'success',
+            'experience' => $experience
+        ]);
     }
 }
