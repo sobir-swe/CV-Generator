@@ -11,4 +11,10 @@ class SocialNetwork extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'link'];
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'social_network_user')
+            ->withPivot('username');
+    }
 }

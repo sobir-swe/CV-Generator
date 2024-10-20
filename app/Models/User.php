@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +9,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
 
     /**
@@ -28,20 +26,53 @@ class User extends Authenticatable
         'biography',
     ];
 
+    /**
+     * Projects relation.
+     */
     public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Project::class);
     }
 
+    /**
+     * Educations relation.
+     */
     public function educations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Education::class);
     }
 
+    /**
+     * Experiences relation.
+     */
     public function experiences(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Experience::class);
     }
 
+    /**
+     * Social Networks relation (Many-to-Many).
+     */
+    public function social_networks(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(SocialNetwork::class, 'social_network_user')
+            ->withPivot('username');
+    }
 
+    /**
+     * Skill user relation (Many-to-Many).
+     */
+    public function skill_user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Skill::class, 'skill_user');
+    }
+
+    /**
+     * Language user relation (Many-to-Many).
+     */
+    public function language_user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Language::class, 'language_user')
+            ->withPivot('level');
+    }
 }
