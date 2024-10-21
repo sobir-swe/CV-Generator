@@ -20,7 +20,6 @@ class Language extends Model
      */
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'language_user', 'language_id', 'user_id')
-            ->withPivot('user_id', 'language_id');
+        return $this->belongsToMany(User::class, 'language_user', 'language_id', 'user_id');
     }
 }

@@ -14,7 +14,6 @@ class SocialNetwork extends Model
 
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'social_network_user')
-            ->withPivot('username');
+        return $this->belongsToMany(User::class, 'social_network_user', 'social_network_id', 'user_id');
     }
 }

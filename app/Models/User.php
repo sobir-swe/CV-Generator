@@ -55,14 +55,13 @@ class User extends Authenticatable
      */
     public function social_networks(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(SocialNetwork::class, 'social_network_user')
-            ->withPivot('username');
+        return $this->belongsToMany(SocialNetwork::class, 'social_network_user', 'user_id', 'social_network_id');
     }
 
     /**
      * Skill user relation (Many-to-Many).
      */
-    public function skill_user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function skills(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Skill::class, 'skill_user');
     }
