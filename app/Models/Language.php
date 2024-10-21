@@ -15,9 +15,12 @@ class Language extends Model
         'level'
     ];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    /**
+     * The users that belong to the language.
+     */
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'language_user')
-            ->withPivot('level');
+        return $this->belongsToMany(User::class, 'language_user', 'language_id', 'user_id')
+            ->withPivot('user_id', 'language_id');
     }
 }
