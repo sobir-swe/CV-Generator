@@ -40,7 +40,7 @@ class ExperienceController extends Controller
 
         return response()->json([
             'message' => 'Experience created successfully',
-            'experience' => $experience
+            'status' => 'success',
         ]);
     }
 
@@ -77,7 +77,6 @@ class ExperienceController extends Controller
         return response()->json([
             'message' => 'Experience updated successfully',
             'status' => 'success',
-            'experience' => $experience
         ]);
     }
 
@@ -91,7 +90,6 @@ class ExperienceController extends Controller
         return response()->json([
             'message' => 'Experience deleted successfully',
             'status' => 'success',
-            'experience' => $experience
             ]);
     }
 }

@@ -81,7 +81,6 @@ class UserController extends Controller
         return response()->json([
            'message' => 'User updated successfully',
            'status' => 'success',
-            'user' => $user
         ]);
     }
 
@@ -95,7 +94,6 @@ class UserController extends Controller
         return response()->json([
             'message' => 'User deleted successfully',
             'status' => 'success',
-            'user' => $user
         ]);
     }
 }

@@ -70,9 +70,10 @@ class User extends Authenticatable
     /**
      * Language user relation (Many-to-Many).
      */
-    public function language_user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    // User.php
+    public function languages(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Language::class, 'language_user')
-            ->withPivot('level');
+        return $this->belongsToMany(Language::class, 'language_user', 'user_id', 'language_id');
     }
+
 }

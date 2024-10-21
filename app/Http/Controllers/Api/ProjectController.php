@@ -39,7 +39,7 @@ class ProjectController extends Controller
 
         return response()->json([
             'message' => 'Project created successfully',
-            'project' => $project,
+            'status' => 'success',
         ]);
     }
 
@@ -77,7 +77,7 @@ class ProjectController extends Controller
         return response()->json([
             'message' => 'Project updated successfully',
             'status' => 'success',
-            'project' => $project,
+
         ]);
     }
 
@@ -92,7 +92,7 @@ class ProjectController extends Controller
         return response()->json([
             'message' => 'Project deleted successfully',
             'status' => 'success',
-            'project' => $project,
+
         ]);
     }
 }

@@ -39,7 +39,7 @@ class EducationController extends Controller
 
         return response()->json([
             'message' => 'Education created successfully',
-            'experience' => $experience
+            'status' => 'success',
         ]);
     }
 
@@ -75,7 +75,6 @@ class EducationController extends Controller
         return response()->json([
             'message' => 'Education updated successfully',
             'status' => 'success',
-            'experience' => $experience
         ]);
     }
 
@@ -89,7 +88,6 @@ class EducationController extends Controller
         return response()->json([
             'message' => 'Education deleted successfully',
             'status' => 'success',
-            'experience' => $experience
         ]);
     }
 }
