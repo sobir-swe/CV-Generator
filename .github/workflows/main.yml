@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # asosiy branchingiz nomi
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/php-action@v2
+      with:
+        php-version: '8.0' # PHP versiyasini moslashtiring
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Run tests
+      run: vendor/bin/phpunit # PHPUnit yo'lini moslashtiring
