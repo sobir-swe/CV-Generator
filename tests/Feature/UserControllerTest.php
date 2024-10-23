@@ -5,13 +5,13 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
-
 class UserControllerTest extends TestCase
 {
-    use RefreshDatabase, InteractsWithDatabase;
+    use RefreshDatabase, InteractsWithDatabase, WithFaker;
 
     public function setUp(): void
     {
@@ -50,16 +50,15 @@ class UserControllerTest extends TestCase
             ]);
     }
 
-
     public function test_a_user_can_be_created()
     {
         $response = $this->postJson('/api/users', [
-            'last_name' => 'Doe',
-            'first_name' => 'Jon',
-            'nt_id' => 12345,
+            'last_name' => $this->faker->lastName,
+            'first_name' => $this->faker->firstName,
+            'nt_id' => $this->faker->numberBetween(10000, 99999),
             'image' => null,
-            'phone' => '+998912345678',
-            'profession' => 'Engineer',
+            'phone' => $this->faker->phoneNumber,
+            'profession' => $this->faker->word,
             'biography' => null,
         ]);
 
@@ -71,12 +70,12 @@ class UserControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $response = $this->putJson("/api/users/{$user->id}", [
-            'last_name' => 'Doe',
-            'first_name' => 'Jon',
-            'nt_id' => 12345,
+            'last_name' => $this->faker->lastName,
+            'first_name' => $this->faker->firstName,
+            'nt_id' => $this->faker->numberBetween(10000, 99999),
             'image' => null,
-            'phone' => '+998912345678',
-            'profession' => 'Engineer',
+            'phone' => $this->faker->phoneNumber,
+            'profession' => $this->faker->word,
             'biography' => null,
         ]);
 
