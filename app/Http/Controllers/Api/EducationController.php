@@ -40,7 +40,7 @@ class EducationController extends Controller
         return response()->json([
             'message' => 'Education created successfully',
             'status' => 'success',
-        ]);
+        ], 201);
     }
 
     /**
