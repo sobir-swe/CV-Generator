@@ -40,7 +40,7 @@ class ProjectController extends Controller
         return response()->json([
             'message' => 'Project created successfully',
             'status' => 'success',
-        ]);
+        ], 201);
     }
 
     /**
