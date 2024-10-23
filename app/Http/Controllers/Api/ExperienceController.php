@@ -41,7 +41,7 @@ class ExperienceController extends Controller
         return response()->json([
             'message' => 'Experience created successfully',
             'status' => 'success',
-        ]);
+        ], 201);
     }
 
     /**
