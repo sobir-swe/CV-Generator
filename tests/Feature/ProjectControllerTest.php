@@ -6,12 +6,13 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class ProjectControllerTest extends TestCase
 {
-    use RefreshDatabase, InteractsWithDatabase;
+    use RefreshDatabase, InteractsWithDatabase, WithFaker;
 
     public function setUp(): void
     {
@@ -51,11 +52,10 @@ class ProjectControllerTest extends TestCase
     public function test_a_project_can_be_created()
     {
         $response = $this->postJson('/api/projects', [
-            'user_id' => User::factory()->create()->id,
-            'name' => 'Telegram Bot',
-            'description' => 'Best Telegram Bot',
-            'source_link' => 'https://telegram5234.me/bot',
-            'demo_link' => 'https://telegram437.me/bot',
+            'name' => $this->faker->word,
+            'description' => $this->faker->text,
+            'source_link' => $this->faker->url,
+            'demo_link' => $this->faker->url,
         ]);
 
         $response->assertStatus(201)
@@ -66,11 +66,10 @@ class ProjectControllerTest extends TestCase
     {
         $project = Project::factory()->create();
         $response = $this->putJson("/api/projects/{$project->id}", [
-            'user_id' => $project->user_id,
-            'name' => 'Updated Project Name',
-            'description' => 'Updated Description',
-            'source_link' => 'https://updated_source_link.com',
-            'demo_link' => 'https://updated_demo_link.com',
+            'name' => $this->faker->word,
+            'description' => $this->faker->text,
+            'source_link' => $this->faker->url,
+            'demo_link' => $this->faker->url,
         ]);
 
         $response->assertStatus(200)
