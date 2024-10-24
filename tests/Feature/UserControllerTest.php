@@ -60,6 +60,9 @@ class UserControllerTest extends TestCase
             'phone' => $this->faker->phoneNumber,
             'profession' => $this->faker->word,
             'biography' => null,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => $this->faker->password,
+            'password_confirmation' => $this->faker->password,
         ]);
 
         $response->assertStatus(201)
