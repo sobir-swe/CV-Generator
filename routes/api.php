@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth:sanctum')->group(function () {
+//Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/users', UserController::class);
 
@@ -34,6 +34,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/social_networks', SocialNetworkController::class);
 
-});
+//});
 
 
